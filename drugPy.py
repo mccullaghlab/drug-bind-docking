@@ -11,7 +11,7 @@ Drug DB			--------------		---------------		-------------			 |	   |
 import sys
 import numpy
 
-configFile = sys.argv[1]
+configFile = ""
 flexDockingCriteria = []
 thermIntegCriteria = []
 results = [[],[],[]]
@@ -20,7 +20,8 @@ bindingPocket = []
 drugDb = []
 
 def checkConfig(configFile):
-	if (len(configFile) > 0):
+	if (len(sys.argv) > 1):
+		configFile = sys.argv[1]
 		print ("Config file: {}".format(configFile))
 		return True
 	else:
@@ -32,6 +33,9 @@ def getConfigData(configFile):
 		print("Reading in config data...")
 		# Get config data
 		print("Config data read successfully.")
+		return True
+	else:
+		return False
 
 def rigidDocking():
 	print("Rigid Docking...")
@@ -49,9 +53,9 @@ def thermoIntegration(thermIntegCriteria):
 	print("Thermodynamic Integration appied.")
 
 def main():
-	getConfigData(configFile)
-	rigidDocking()
-	flexibleDocking(flexDockingCriteria)
-	thermoIntegration(thermIntegCriteria)
+	if (getConfigData(configFile)):
+		rigidDocking()
+		flexibleDocking(flexDockingCriteria)
+		thermoIntegration(thermIntegCriteria)
 
 main()
