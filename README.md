@@ -9,5 +9,6 @@ To run this script, use:
    
    Options:
 
-	-v	verbose console output
-	-vv	all debug info and verbose console output
+	-v		verbose console output
+	-vv		all debug info and verbose console output
+	-n 		skip splitting of mol2 library if this step has been performed once already (splits by default)

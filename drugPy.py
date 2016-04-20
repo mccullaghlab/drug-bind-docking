@@ -23,23 +23,30 @@ bindingPocket = []
 drugDb = []
 v = False
 vv = False
+split = True
 
 # Give program usage
 def usage():
-	print("    drugPy Usage\n\n\t$ python drugPy.py <config file> <options>")
-	print("\n\t -v\t\tverbose console output\n\t-vv\t\tall debug info + verbose console output\n")
+	print("    drugPy Usage\n\n\t$ python drugPy.py run.cfg <options>")
+	print("\n\t -v\t\tverbose console output\n\t-vv\t\tall debug info + verbose console output\n\t-n\t\tskip splitting mol2 library")
 
 # Check input for selected options
 def options():
-	global v, vv
-	if ((len(sys.argv) != 2) & (len(sys.argv) != 3)):
+	global v, vv, split
+	if ((len(sys.argv) != 2) & (len(sys.argv) != 3) & (len(sys.argv) != 4)):
 		usage()
-	elif (len(sys.argv) == 3):
+		return False
+	if (len(sys.argv) >= 3):
 		if (sys.argv[2] == "-v"):
 			v = True
 		elif (sys.argv[2] == "-vv"):
 			v = True
 			vv = True
+	if (len(sys.argv) >= 4):
+		if (sys.argv[3] == "-n"):
+			if v:
+				print(" Mol2 split has been skipped.")
+			split = False
 	return True
 
 # Establish that a config file is present
@@ -56,13 +63,13 @@ def checkConfig():
 
 # Parse config file for program data
 def getConfigData():
-	options()
-	if (checkConfig()):
+	if (options() & checkConfig()):
 		if vv:
 			print("Reading in config data...")
 		# Get config data
 		parseConfigFile(configFile, vv)
-		#split_mol2(v, vv)
+		if split:
+			split_mol2(v, vv)
 		if v:
 			print("Execute:  multi_proc_convert.sh... (may prompt for sudo password)")
 		os.system("./multi_proc_convert.sh")
