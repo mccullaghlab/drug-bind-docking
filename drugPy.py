@@ -62,7 +62,15 @@ def getConfigData():
 			print("Reading in config data...")
 		# Get config data
 		parseConfigFile(configFile, vv)
-		split_mol2(v, vv)
+		#split_mol2(v, vv)
+		if v:
+			print("Execute:  multi_proc_convert.sh... (may prompt for sudo password)")
+		os.system("./multi_proc_convert.sh")
+
+		'''
+			Encountering 'broken pipe' error here
+		'''
+
 		if vv:
 			print("Config data read successfully.")
 		return True

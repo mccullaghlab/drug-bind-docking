@@ -1,8 +1,6 @@
 #!/mnt/lustre_fs/users/mjmcc/apps/python2.7/bin/python
 import os, sys
 
-
-
 if __name__ == '__main__':
     import sys
     import getopt

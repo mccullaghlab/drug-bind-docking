@@ -2,10 +2,10 @@
 
 To run this script, use:
     
-    $ python drugPy.py <configFile> <options>
+    $ python drugPy.py run.cfg <options>
     
 1. Edit <configFile> to reflect the relative paths of the .mol2 <library> file and the .pdb <receptor> file.
-2. Execute  $ python drugPy.py <configFile> <options>
+2. Execute  $ python drugPy.py run.cfg <options>
    
    Options:
 

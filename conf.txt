@@ -1,0 +1,11 @@
+receptor = receptor/2ppn.pdbqt
+
+center_x = 2.316
+center_y = -0.083
+center_z = 1.222
+
+size_x = 60
+size_y = 60
+size_z = 60 
+
+num_modes = 10
